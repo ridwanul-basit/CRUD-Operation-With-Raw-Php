@@ -15,6 +15,8 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 }
 
 // Fetch students
+
+
 $sql = "SELECT * FROM students_details ORDER BY roll ASC";
 $result = $conn->query($sql);
 
