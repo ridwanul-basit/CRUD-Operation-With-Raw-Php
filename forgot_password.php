@@ -9,8 +9,8 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 include 'db.php';
 
-// Always work in UTC
-date_default_timezone_set("UTC");
+// Always work in local
+date_default_timezone_set("Asia/Dhaka");
 
 // CORS headers
 header("Access-Control-Allow-Origin: http://localhost:5173");

@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set("UTC"); // Set UTC timezone
+date_default_timezone_set("Asia/Dhaka"); // Set local timezone
 
 header("Access-Control-Allow-Origin: http://localhost:5173");  
 header("Access-Control-Allow-Headers: Content-Type");

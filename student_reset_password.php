@@ -1,6 +1,6 @@
 <?php
 // Set timezone to UTC
-date_default_timezone_set("UTC");
+date_default_timezone_set("Asia/Dhaka");
 
 header("Access-Control-Allow-Origin: http://localhost:5173");  
 header("Access-Control-Allow-Headers: Content-Type");

@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 include 'db.php';
 
 // Always UTC
-date_default_timezone_set("UTC");
+date_default_timezone_set("Asia/Dhaka");
 
 // CORS headers
 header("Access-Control-Allow-Origin: http://localhost:5173");

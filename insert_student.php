@@ -1,12 +1,19 @@
 <?php
-header("Access-Control-Allow-Origin: *");  
-header("Access-Control-Allow-Headers: Content-Type");
+session_start();
+header("Access-Control-Allow-Origin: http://localhost:5173"); // Allow your React app
 header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Content-Type: application/json");
+
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 include 'db.php';
 require 'vendor/autoload.php'; // PHPMailer
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -41,8 +48,10 @@ if (
     $verify_token = bin2hex(random_bytes(40));
     $verify_expires = date("Y-m-d H:i:s", strtotime("+24 hours"));
 
-    $sql = "INSERT INTO students_details (name, email, roll, age, gender, university, cgpa, major, password, verify_token, verify_expires)
-            VALUES ('$name', '$email', '$roll', $age, '$gender', '$university', $cgpa, '$major', '$password', '$verify_token', '$verify_expires')";
+    $sql = "INSERT INTO students_details 
+            (name, email, roll, age, gender, university, cgpa, major, password, verify_token, verify_expires)
+            VALUES 
+            ('$name', '$email', '$roll', $age, '$gender', '$university', $cgpa, '$major', '$password', '$verify_token', '$verify_expires')";
 
     if ($conn->query($sql) === TRUE) {
         // Send verification email
@@ -52,7 +61,7 @@ if (
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'basitridwanul@gmail.com'; // your Gmail
+            $mail->Username   = 'basitridwanul@gmail.com';
             $mail->Password   = 'jzkb lgrj nydv uxlm';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
