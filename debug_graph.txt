@@ -1,0 +1,28 @@
+{
+    "verified": 5,
+    "pending": 1,
+    "departments": [
+        {
+            "department": "BBA",
+            "total": 2
+        },
+        {
+            "department": "CSE",
+            "total": 3
+        },
+        {
+            "department": "Economics",
+            "total": 1
+        }
+    ],
+    "monthly": [
+        {
+            "month": "Sep",
+            "total": 4
+        },
+        {
+            "month": "Oct",
+            "total": 2
+        }
+    ]
+}
