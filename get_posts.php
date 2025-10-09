@@ -6,30 +6,18 @@ header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Credentials: true");
 header("Content-Type: application/json");
 
-if(!isset($_SESSION['admin_logged_in']) || !$_SESSION['admin_logged_in']){
-    echo json_encode(["success"=>false,"message"=>"Not authorized"]);
-    exit;
-}
-
+$result = $conn->query("SELECT * FROM posts WHERE status='approved' ORDER BY id DESC");
 $posts = [];
-$postResult = $conn->query("SELECT * FROM posts ORDER BY id DESC");
-if($postResult){
-    while($post = $postResult->fetch_assoc()){
-        // Get comments for this post
-        $comments = [];
-        $cRes = $conn->query("SELECT * FROM comments WHERE post_id=".$post['id']." ORDER BY id ASC");
-        if($cRes){
-            while($c = $cRes->fetch_assoc()){
-                $comments[] = $c;
-            }
-        }
-        $post['comments'] = $comments;
-        $posts[] = $post;
-    }
-    echo json_encode(["success"=>true,"posts"=>$posts]);
-}else{
-    echo json_encode(["success"=>false,"message"=>"Database error"]);
+
+while ($row = $result->fetch_assoc()) {
+    $post_id = $row['id'];
+    $cRes = $conn->query("SELECT * FROM comments WHERE post_id = $post_id AND status='approved' ORDER BY id ASC");
+    $comments = [];
+    while ($c = $cRes->fetch_assoc()) $comments[] = $c;
+    $row['comments'] = $comments;
+    $posts[] = $row;
 }
 
+echo json_encode(["success" => true, "posts" => $posts]);
 $conn->close();
 ?>
