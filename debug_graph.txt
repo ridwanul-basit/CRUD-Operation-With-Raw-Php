@@ -1,5 +1,5 @@
 {
-    "verified": 5,
+    "verified": 4,
     "pending": 1,
     "departments": [
         {
@@ -9,10 +9,6 @@
         {
             "department": "CSE",
             "total": 3
-        },
-        {
-            "department": "Economics",
-            "total": 1
         }
     ],
     "monthly": [
@@ -22,7 +18,7 @@
         },
         {
             "month": "Oct",
-            "total": 2
+            "total": 1
         }
     ]
 }
